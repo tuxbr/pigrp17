@@ -1,0 +1,54 @@
+-- Tabela de Usuários
+CREATE TABLE Usuarios (
+    UserID INT PRIMARY KEY,
+    Nome VARCHAR(255),
+    Email VARCHAR(255) UNIQUE,
+    Senha VARCHAR(255),
+    Localizacao VARCHAR(255),
+    -- Outros campos de dados pessoais
+);
+
+-- Tabela de Mudas
+CREATE TABLE Mudas (
+    MudaID INT PRIMARY KEY,
+    NomePlanta VARCHAR(255),
+    Descricao TEXT,
+    Categoria VARCHAR(50),
+    Imagem VARCHAR(255),
+    ProprietarioID INT,
+    FOREIGN KEY (ProprietarioID) REFERENCES Usuarios(UserID)
+);
+
+-- Tabela de Trocas
+CREATE TABLE Trocas (
+    TrocaID INT PRIMARY KEY,
+    OfertanteID INT,
+    RecebedorID INT,
+    MudaOfertadaID INT,
+    MudaDesejadaID INT,
+    Status VARCHAR(50),
+    FOREIGN KEY (OfertanteID) REFERENCES Usuarios(UserID),
+    FOREIGN KEY (RecebedorID) REFERENCES Usuarios(UserID),
+    FOREIGN KEY (MudaOfertadaID) REFERENCES Mudas(MudaID),
+    FOREIGN KEY (MudaDesejadaID) REFERENCES Mudas(MudaID)
+);
+
+-- Tabela de Fórum
+CREATE TABLE Forum (
+    PostID INT PRIMARY KEY,
+    UserID INT,
+    Conteudo TEXT,
+    DataHora DATETIME,
+    FOREIGN KEY (UserID) REFERENCES Usuarios(UserID)
+);
+
+-- Tabela de Avaliações
+CREATE TABLE Avaliacoes (
+    AvaliacaoID INT PRIMARY KEY,
+    AvaliadorID INT,
+    AvaliadoID INT,
+    Comentario TEXT,
+    Classificacao INT,
+    FOREIGN KEY (AvaliadorID) REFERENCES Usuarios(UserID),
+    FOREIGN KEY (AvaliadoID) REFERENCES Usuarios(UserID)
+);
