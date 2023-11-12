@@ -1,0 +1,92 @@
+body {
+    margin: 50px;
+    font-family: 'serif', cursive;
+}
+
+#titulo {
+    width: auto;
+    color: pink;
+}
+/*  WIDTH: largura - PX E % 
+    HEIGHT: altura*/
+.exemplos {
+    color: blue;
+    margin: 10px;
+}
+
+p {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+    text-transform: lowercase;
+    text-decoration: underline;
+    text-shadow: 1px 1px 0px green;
+}
+
+#tabela {
+    font-family: serif;
+}
+
+tbody tr:hover {
+    background-color: yellow;
+}
+
+tbody td {
+    border-bottom: 1px solid red;
+}
+
+label{
+    display: block;
+    margin-bottom: 15px;
+}
+
+input[type=text], select {
+    padding: 10px;
+    width: 400px;
+    font-size: 15px;
+    border: 1px solid gray; 
+    outline: none;
+}
+
+fieldset{
+    background-color:aliceblue;
+    margin-bottom: 20px;
+    border: 2px solid black ;
+}
+
+legend{
+    background-color: blue;
+    color: #FFF;
+    padding: 5px;
+}
+
+.container{
+    width:calc(100% -28px);
+    height: 200px;
+    background-color: aliceblue;
+
+    color: thistle;
+    font-size: 30px;
+    border: 3px solid red;
+}
+
+.box{
+    font-size: 20px;
+}
+
+.box-interno{
+    width: 10em;
+    height: 10em;
+    background-color: black;
+}
+
+/* em: ele é baseado na font-size do item pai do elemento que está sendo colocado
+quem vem antes dele.
+vezes o tamanho no font-size*/
+
+ 
+.box-interno{
+    width: 100vh;
+}
+/*vh: 100% do espaço de tela*/
