@@ -1,5 +1,6 @@
 package br.com.pigrp17.appback.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,9 @@ public class ForumServiceImpl implements ForumService {
 
     @Override
     public Forum save(Forum forum) {
+        if (forum.getDataHora() == null) {
+            forum.setDataHora(LocalDateTime.now());
+        }
         return repo.save(forum);
     }
 
@@ -37,6 +41,7 @@ public class ForumServiceImpl implements ForumService {
         if (forum != null) {
             return null;
         }
+        newForum.setDataHora(LocalDateTime.now());
         return repo.save(newForum);
     }
 
