@@ -24,9 +24,10 @@ public class TrocaController {
     private TrocaService service;
 
     @GetMapping
-    public ResponseEntity<List<Troca>> getAllTrocas() {
+    public ResponseEntity<List<Troca>> getAllTrocas(@PathVariable(required = false) Integer page,
+            @PathVariable(required = false) Integer limit) {
         try {
-            List<Troca> trocas = service.findAll();
+            List<Troca> trocas = service.getAll(page, limit);
             if (trocas.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

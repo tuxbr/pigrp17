@@ -24,9 +24,10 @@ public class ForumController {
     private ForumService service;
 
     @GetMapping
-    public ResponseEntity<List<Forum>> getAllForums() {
+    public ResponseEntity<List<Forum>> getAllForums(@PathVariable(required = false) Integer page,
+            @PathVariable(required = false) Integer limit) {
         try {
-            List<Forum> forums = service.findAll();
+            List<Forum> forums = service.getAll(page, limit);
             if (forums.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

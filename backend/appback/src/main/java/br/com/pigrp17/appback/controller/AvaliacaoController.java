@@ -24,9 +24,10 @@ public class AvaliacaoController {
     private AvaliacaoService service;
 
     @GetMapping
-    public ResponseEntity<List<Avaliacao>> getAllAvaliacaos() {
+    public ResponseEntity<List<Avaliacao>> getAllAvaliacoes(@PathVariable(required = false) Integer page,
+            @PathVariable(required = false) Integer limit) {
         try {
-            List<Avaliacao> avaliacaos = service.findAll();
+            List<Avaliacao> avaliacaos = service.getAll(page, limit);
             if (avaliacaos.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

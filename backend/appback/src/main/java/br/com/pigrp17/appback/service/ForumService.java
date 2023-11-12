@@ -7,7 +7,7 @@ import br.com.pigrp17.appback.model.Forum;
 public interface ForumService {
     Forum getById(int id);
 
-    List<Forum> findAll();
+    List<Forum> getAll(Integer page, Integer limit);
 
     Forum save(Forum forum);
 

@@ -7,7 +7,7 @@ import br.com.pigrp17.appback.model.Muda;
 public interface MudaService {
     Muda getById(int id);
 
-    List<Muda> findAll();
+    List<Muda> getAll(Integer page, Integer limit);
 
     Muda save(Muda muda);
 
