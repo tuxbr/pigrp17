@@ -1,0 +1,9 @@
+POST http://localhost:8080/usuarios
+Content-Type: application/json
+
+{
+    "nome": "Marcio Costa",
+    "email": "marcio@gmail.com",
+    "localizacao": "Fortaleza, CE"
+
+}
