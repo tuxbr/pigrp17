@@ -6,7 +6,7 @@ Projeto Integrador Grupo 17 - Atualizado
 ### Bianca de Oliveira Santos - biaaoliveira
 ### Raimundo Marcio Nunes Costa - tuxbr/ tuxgrupomx
 ### Vinicius Nogueira Martins - Vininea
-### Beatriz Ferro de Carvalho Benvenuto - **(github.com/Bbenvennuto)**
+### Beatriz Ferro de Carvalho Benvenuto - (github.com/Bbenvennuto)
 
 
 
