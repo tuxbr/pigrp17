@@ -7,3 +7,7 @@ Content-Type: application/json
     "localizacao": "Fortaleza, CE"
 
 }
+
+###
+GET http://localhost:8080/usuarios
+Content-Type: application/json
