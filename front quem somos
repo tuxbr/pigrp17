@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem somos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            background-image: url('https://img.freepik.com/free-photo/top-view-assortment-different-fresh-vegetables-with-copy-space_23-2148655293.jpg?w=900&t=st=1700154073~exp=1700154673~hmac=66bacbebb8c6729fe7da27a4766f76216ae648908318eb1decbef597ec536287');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #404040;
+        }
+
+        #content {
+            max-width: 600px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1,
+        h2,
+        p {
+            color: #404040;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <h1>Terra Trocada</h1>
+        <h2>Quem Somos</h2>
+        <p>Bem-vindo ao TERRA TROCADA, uma comunidade apaixonada por agricultura, sustentabilidade e conexões locais. Somos um grupo de entusiastas da agricultura caseira que acredita que o poder da colaboração e da partilha pode transformar a maneira como vemos a produção de alimentos.
+            Nossa jornada começou com a ideia de criar uma plataforma onde micro produtores caseiros pudessem se unir, trocar experiências e, é claro, compartilhar suas colheitas. Acreditamos que cada jardim, quintal ou horta tem o potencial de criar uma abundância de frutas e legumes saudáveis, e queremos tornar mais fácil para todos desfrutarem dessas delícias frescas e locais.
+            O TERRA TROCADA é mais do que apenas uma plataforma online; é uma comunidade que valoriza a conexão humana, o respeito à terra e a promoção da agricultura sustentável.
+            <br>Através da nossa plataforma, você poderá:
+            <br> &#x2705 Trocar seus produtos caseiros com outros membros da comunidade.
+            <br>&#x2705 Conhecer agricultores locais e entusiastas da jardinagem.
+            <br>&#x2705 Aprender novas técnicas de cultivo e práticas sustentáveis.
+            <br>&#x2705 Compartilhar histórias, receitas e experiências com pessoas que compartilham sua paixão pela agricultura.
+            <br>Aqui no TERRA TROCADA, acreditamos que todos podem fazer a diferença, não importa o tamanho de sua produção. Juntos, estamos construindo uma rede de apoio local, onde a partilha é a moeda e a amizade é a recompensa. Junte-se a nós nessa jornada e seja parte de uma comunidade que cultiva não apenas alimentos, mas também conexões significativas.
+            Estamos entusiasmados por ter você conosco e ansiosos para ver suas hortas e jardins florescerem. Seja bem-vindo à nossa comunidade!</p>
+
+        <a href="index.html"><button>Início</button></a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro Produto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://img.freepik.com/fotos-gratis/legumes-saudaveis-cheios-de-vitaminas_23-2148290735.jpg?w=740&t=st=1700096782~exp=1700097382~hmac=5c61fd01b92d5ec2f599049024e8f221178f18a5929b9ae197ab794283fcb621');
+      background-size: cover;
+      background-position: center;
+      color: #404040;
+      text-align: left;
+      margin: auto;
+      padding: 20;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+      align-items: left;
+    }
+
+    #title-box {
+      background-color: #404040;
+      padding: 10px;
+      border-radius: 5px;
+      margin-right: auto;
+      margin-left: 30px;
+      max-width: 80%;
+    }
+
+    #title {
+      color: #fff;
+      margin: 10px;
+    }
+
+    h2 {
+      color: #404040;
+    }
+
+    form {
+      max-width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 20px;
+      text-align: left;
+      color: #404040;
+    }
+
+    input {
+      width: calc(100% - 20px);
+      padding: 2px;
+      margin-bottom: 0px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="title-box">
+    <h1 id="title">Terra Trocada</h1>
+  </div>
+  
+  <div>
+    <h2>Cadastro Produtor</h2>
+
+    <form action="paginas/cadastroproduto.html" method="GET">
+
+      <label>
+        Nome Completo: <br>
+        <input type="text" name="nome" />
+      </label>
+
+      <label>
+        CPF: <br>
+        <input type="text" name="cpf" />
+      </label>
+
+      <label>
+        Endereço: <br>
+        <input type="text" name="endereco" />
+      </label>
+
+      <label>
+        E-mail: <br>
+        <input type="email" name="email"/>
+      </label>
+
+      <label>
+        Celular: <br>
+        <input type="tel" value="(XX) XXXXX-XXXX" />
+      </label>
+
+      <label>
+        Login: <br>
+        <input type="text" name="login" />
+      </label>
+
+      <label>
+        Senha: <br>
+        <input type="password" value="senha" />
+      </label>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+</body>
+</html>
