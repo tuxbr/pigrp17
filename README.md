@@ -13,4 +13,4 @@ Projeto Integrador Grupo 17 - Atualizado
 ## URL Vídeo demonstração: [https://www.youtube.com/watch?v=Ajrf_gYYPkk](https://youtu.be/CRsBND3bgtQ)
 
 ## Para o ambiente de desenvolvimento utilizamos: Java 8 SDK, Maven, VSCode, PostgreSQL 15 e Github.
-## Para testar o projeto devemos abrir o arquivo index.html que esta na pasta do repositorio. O Frontend foi desenvolvido utlizando html e css esta na pasta Frontend do repositório. O backend foi desenvolvido utilizando Java 8 + sprintg boot + JPA Hibernate + RESTful e esta na pasta backend/appback do repositorio.
+## Para testar o projeto devemos abrir o arquivo index.html que esta na pasta Frontend do repositorio. O Frontend foi desenvolvido utlizando html e css esta na pasta Frontend do repositório. O backend foi desenvolvido utilizando Java 8 + sprintg boot + JPA Hibernate + RESTful e esta na pasta backend/appback do repositorio.
