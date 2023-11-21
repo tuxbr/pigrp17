@@ -11,5 +11,6 @@ Projeto Integrador Grupo 17 - Atualizado
 # Projeto revisado: https://github.com/tuxbr/pigrp17/blob/main/Projeto%20Integrador%20IV%20-%20GRUPO%2017%20-%202%C2%AA%20Entrega_V1_201123.PDF
 
 ## URL Vídeo demonstração: [https://www.youtube.com/watch?v=Ajrf_gYYPkk](https://youtu.be/CRsBND3bgtQ)
+
 ## Para o ambiente de desenvolvimento utilizamos: Java 8 SDK, Maven, VSCode, PostgreSQL 15 e Github.
-## Para testar o projeto devemos abrir o arquivo index.html que esta na pasta do repositorio. O backend desenvolvido em Java 8 + sprintg boot + JPA Hibernate + RESTful esta na pasta backend/appback do repositorio.
+## Para testar o projeto devemos abrir o arquivo index.html que esta na pasta do repositorio. O Frontend foi desenvolvido utlizando html e css esta na pasta Frontend do repositório. O backend foi desenvolvido utilizando Java 8 + sprintg boot + JPA Hibernate + RESTful e esta na pasta backend/appback do repositorio.
