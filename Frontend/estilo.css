@@ -7,6 +7,7 @@ body {
     width: auto;
     color: pink;
 }
+
 /*  WIDTH: largura - PX E % 
     HEIGHT: altura*/
 .exemplos {
@@ -36,33 +37,34 @@ tbody td {
     border-bottom: 1px solid red;
 }
 
-label{
+label {
     display: block;
     margin-bottom: 15px;
 }
 
-input[type=text], select {
+input[type=text],
+select {
     padding: 10px;
     width: 400px;
     font-size: 15px;
-    border: 1px solid gray; 
+    border: 1px solid gray;
     outline: none;
 }
 
-fieldset{
-    background-color:aliceblue;
+fieldset {
+    background-color: aliceblue;
     margin-bottom: 20px;
-    border: 2px solid black ;
+    border: 2px solid black;
 }
 
-legend{
+legend {
     background-color: blue;
     color: #FFF;
     padding: 5px;
 }
 
-.container{
-    width:calc(100% -28px);
+.container {
+    width: calc(100% -28px);
     height: 200px;
     background-color: aliceblue;
 
@@ -71,11 +73,11 @@ legend{
     border: 3px solid red;
 }
 
-.box{
+.box {
     font-size: 20px;
 }
 
-.box-interno{
+.box-interno {
     width: 10em;
     height: 10em;
     background-color: black;
@@ -85,8 +87,9 @@ legend{
 quem vem antes dele.
 vezes o tamanho no font-size*/
 
- 
-.box-interno{
+
+.box-interno {
     width: 100vh;
 }
+
 /*vh: 100% do espaço de tela*/

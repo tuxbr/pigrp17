@@ -78,3 +78,24 @@ button2:hover{
 ul{
     font-size: 20px;
 }
+
+buttonProx{
+    width: 70px;
+    height: 40px;
+    border-radius: 15px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 20px;
+    color: black;
+}
+
+
+button3:hover{
+    color: orange;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
