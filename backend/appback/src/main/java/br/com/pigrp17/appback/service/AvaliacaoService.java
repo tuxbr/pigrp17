@@ -7,7 +7,7 @@ import br.com.pigrp17.appback.model.Avaliacao;
 public interface AvaliacaoService {
     Avaliacao getById(int id);
 
-    List<Avaliacao> findAll();
+    List<Avaliacao> getAll(Integer page, Integer limit);
 
     Avaliacao save(Avaliacao avaliacao);
 

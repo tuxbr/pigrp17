@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.pigrp17.appback.model.Troca;
@@ -22,8 +24,13 @@ public class TrocaServiceImpl implements TrocaService {
     }
 
     @Override
-    public List<Troca> findAll() {
-        return repo.findAll();
+    public List<Troca> getAll(Integer page, Integer limit) {
+        if (page != null && limit != null) {
+            Pageable pegeable = PageRequest.of(page, limit);
+            return repo.findAll(pegeable).toList();
+        } else {
+            return repo.findAll();
+        }
     }
 
     @Override

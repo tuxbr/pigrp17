@@ -24,9 +24,10 @@ public class MudaController {
     private MudaService service;
 
     @GetMapping
-    public ResponseEntity<List<Muda>> getAllMudas() {
+    public ResponseEntity<List<Muda>> getAllMudas(@PathVariable(required = false) Integer page,
+            @PathVariable(required = false) Integer limit) {
         try {
-            List<Muda> mudas = service.findAll();
+            List<Muda> mudas = service.getAll(page, limit);
             if (mudas.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

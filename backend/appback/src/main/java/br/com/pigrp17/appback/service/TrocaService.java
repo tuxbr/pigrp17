@@ -7,7 +7,7 @@ import br.com.pigrp17.appback.model.Troca;
 public interface TrocaService {
     Troca getById(int id);
 
-    List<Troca> findAll();
+    List<Troca> getAll(Integer page, Integer limit);
 
     Troca save(Troca troca);
 

@@ -24,9 +24,10 @@ public class UsuarioController {
     private UsuarioService service;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> getAllUsuarios() {
+    public ResponseEntity<List<Usuario>> getAllUsuarios(@PathVariable(required = false) Integer page,
+            @PathVariable(required = false) Integer limit) {
         try {
-            List<Usuario> usuarios = service.findAll();
+            List<Usuario> usuarios = service.getAll(page, limit);
             if (usuarios.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

@@ -21,8 +21,6 @@ public class Forum {
     @Column(name = "post_id", nullable = false)
     private int postId;
 
-    @Id
-    @GeneratedValue
     @Column(name = "user_id", nullable = false)
     private int userId;
 

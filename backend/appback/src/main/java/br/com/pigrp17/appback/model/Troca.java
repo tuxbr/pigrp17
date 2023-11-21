@@ -24,7 +24,7 @@ public class Troca {
     @JoinColumn(name = "orfertante_id", insertable = false, updatable = false)
     private Usuario ofertante;
 
-    @Column(name = "troca_id")
+    @Column(name = "recebedor_id")
     private int recebedorId;
 
     @ManyToOne(fetch = FetchType.EAGER)

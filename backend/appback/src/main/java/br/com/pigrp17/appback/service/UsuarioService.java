@@ -7,7 +7,7 @@ import br.com.pigrp17.appback.model.Usuario;
 public interface UsuarioService {
     Usuario getById(int id);
 
-    List<Usuario> findAll();
+    List<Usuario> getAll(Integer page, Integer limit);
 
     Usuario save(Usuario usuario);
 
