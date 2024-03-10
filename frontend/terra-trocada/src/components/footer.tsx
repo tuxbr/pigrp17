@@ -4,7 +4,7 @@ const Rodape = () => {
   return (
     <footer className="mt-auto">
         <div className="mt-5 bg-light">
-            <Container className="footer-container p-5">
+            <Container className="footer-container py-5">
             <Row>
                 <Col xs={12} md={4} className="mb-4">
                 <div>

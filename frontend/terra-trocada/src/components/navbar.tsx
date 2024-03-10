@@ -20,19 +20,19 @@ const NavbarLinks = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>
+            <Link href="/" className={`nav-link ${pathname === '/' ? 'active text-warning' : ''}`}>
               Home
             </Link>
-            <Link href="/cadastro" className={`nav-link ${pathname === '/cadastro' ? 'active' : ''}`}>
+            <Link href="/cadastro" className={`nav-link ${pathname === '/cadastro' ? 'active text-warning' : ''}`}>
               Cadastro
             </Link>
-            <Link href="/contato" className={`nav-link ${pathname === '/contato' ? 'active' : ''}`}>
+            <Link href="/contato" className={`nav-link ${pathname === '/contato' ? 'active text-warning' : ''}`}>
               Contato
             </Link>
-            <Link href="/proposito" className={`nav-link ${pathname === '/proposito' ? 'active' : ''}`}>
+            <Link href="/proposito" className={`nav-link ${pathname === '/proposito' ? 'active text-warning' : ''}`}>
               Nosso Propósito
             </Link>
-            <Link href="/quem-somos" className={`nav-link ${pathname === '/quem-somos' ? 'active' : ''}`}>
+            <Link href="/quem-somos" className={`nav-link ${pathname === '/quem-somos' ? 'active text-warning' : ''}`}>
               Quem Somos
             </Link>
           </Nav>
