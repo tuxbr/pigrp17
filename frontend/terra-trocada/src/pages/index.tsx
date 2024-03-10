@@ -1,11 +1,12 @@
+import Rodape from "@/components/footer";
 import NavbarLinks from "@/components/navbar";
 
 export default function Index() {
   return (
-    //Essa tag vazia é chamada de fragmento. Os fragmentos permitem agrupar coisas sem deixar rastros na árvore HTML do navegador. https://react.dev/learn/writing-markup-with-jsx
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <NavbarLinks />
       <h1>Terra Trocada (index)</h1>
-    </>
+      <Rodape />
+    </div>
   );
 }

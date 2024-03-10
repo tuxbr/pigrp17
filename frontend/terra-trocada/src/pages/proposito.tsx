@@ -1,11 +1,12 @@
+import Rodape from "@/components/footer";
 import NavbarLinks from "@/components/navbar";
 
 export default function Proposito() {
   return (
-    //Essa tag vazia é chamada de fragmento. Os fragmentos permitem agrupar coisas sem deixar rastros na árvore HTML do navegador. https://react.dev/learn/writing-markup-with-jsx
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <NavbarLinks />
       <h1>Nosso Propósito</h1>
-    </>
+      <Rodape />
+    </div>
   );
 }

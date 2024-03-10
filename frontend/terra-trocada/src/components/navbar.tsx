@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useRouter } from 'next/router';
