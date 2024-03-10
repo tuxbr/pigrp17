@@ -5,7 +5,7 @@ export default function QuemSomos() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <NavbarLinks />
-      <div className="container mt-5">
+      <div className="container mt-4">
         <div className="row">
           <div className="col-md-7">
             <h1 className="mb-4 text-primary">Quem Somos</h1>

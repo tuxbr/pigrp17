@@ -5,7 +5,7 @@ export default function Proposito() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <NavbarLinks />
-      <div className="container mt-5">
+      <div className="container mt-4">
         <h1 className="mb-4 text-primary">Nosso Propósito</h1>
 
         <div className="row">
