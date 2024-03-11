@@ -34,7 +34,7 @@ export default function Contato() {
           </div>
 
           <div className="d-flex justify-content-end">
-            <button type="submit" className="btn btn-primary text-white">Enviar</button>
+            <button type="submit" className="btn btn-primary text-white">Enviar Mensagem</button>
           </div>
         </form>
       </div>
