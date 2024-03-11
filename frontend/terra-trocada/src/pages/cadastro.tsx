@@ -7,7 +7,7 @@ export default function Cadastro() {
       <NavbarLinks />
       
       <div className="container mt-5">
-        <h1 className="mb-4 text-primary">Cadastro de Produtor</h1>
+        <h1 className="mb-4 text-primary text-center">Cadastro de Produtor</h1>
         
         <form>
           <div className="mb-3 row">

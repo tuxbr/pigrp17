@@ -6,10 +6,16 @@ export default function Proposito() {
     <div className="d-flex flex-column min-vh-100">
       <NavbarLinks />
       <div className="container mt-4">
-        <h1 className="mb-4 text-primary">Nosso Propósito</h1>
-
+        <h1 className="mb-4 text-primary text-center">Nosso Propósito</h1>
         <div className="row">
-          <div className="col-md-8">
+          <div className="col-md-3 mt-4">
+            <img
+              src="/img/imagem-proposito.jpg"
+              alt="Ilustração de um pequeno produtor."
+              className="img-fluid"
+            />
+          </div>
+          <div className="col-md-9">
             <p className="text-justify">
               Nosso propósito é cultivar uma mudança positiva na maneira como as pessoas se relacionam com a comida e com a comunidade.
               Acreditamos que a agricultura caseira é mais do que apenas uma atividade; é uma filosofia de vida que nos conecta com a natureza, com nossos vizinhos e conosco mesmos.
@@ -30,13 +36,6 @@ export default function Proposito() {
               No <span className="text-secondary fw-bold">TERRA</span> <span className="text-primary fw-bold">TROCADA</span>, nosso propósito é plantar as sementes de uma mudança positiva que se espalha por nossas comunidades, promovendo um estilo de vida saudável, sustentável e cheio de sabor.
               Junte-se a nós nesta jornada e faça parte desse movimento que cultiva não apenas alimentos, mas também um futuro mais brilhante e mais conectado para todos.
             </p>
-          </div>
-          <div className="col-md-4">
-            <img
-              src="/img/imagem-proposito.jpg"
-              alt="Ilustração de um pequeno produtor."
-              className="img-fluid"
-            />
           </div>
         </div>
       </div>

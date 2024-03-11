@@ -6,11 +6,9 @@ export default function Contato() {
     <div className="d-flex flex-column min-vh-100">
       <NavbarLinks />
       <div className="container mt-4">
-        <h1 className="mb-4 text-primary">Contato</h1>
+        <h1 className="mb-4 text-primary text-center">Contato</h1>
         <p>
-        Entre em contato conosco! Preencha o formulário abaixo e responderemos à sua mensagem assim que possível. 
-        <br />
-        Se preferir, consulte os nossos outros meios de contato no rodapé desta página.
+        Entre em contato conosco! Preencha o formulário abaixo e responderemos à sua mensagem assim que possível. Se preferir, consulte os nossos outros meios de contato no rodapé desta página.
         </p>
         <form>
           <div className="mb-3">
