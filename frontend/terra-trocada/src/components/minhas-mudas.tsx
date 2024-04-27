@@ -33,12 +33,11 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
 
   return (
     <div>
-      <h2 className='text-center'>Minhas Mudas Cadastradas</h2>
+      <h1 className="mb-4 text-primary text-center">Minhas Mudas</h1>
       <p className='text-center'>Cadastre abaixo (ou remova) suas mudas para efetuar suas trocas.</p>
       {erro && <p className="text-danger text-center">{erro}</p>}
-      <div>
-        <div className="row mb-6">
-          <div className="col-md-6 mb-2 text-center">
+      <div className='row justify-content-center'>
+          <div className="col-12 text-center m-2">
             <input
               type="text"
               value={novaMuda.nome}
@@ -46,8 +45,8 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
               placeholder="Nome"
               required
             />
-          </div>
-          <div className="col-md-6 mb-2 text-center">
+          </div >
+          <div className="col-12 text-center m-2">
             <input
               type="text"
               value={novaMuda.especie}
@@ -56,9 +55,7 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
               required
             />
           </div>
-        </div>
-        <div className="row mb-3">
-          <div className="col-md-6 mb-2 text-center">
+          <div className="col-12 text-center m-2">
             <input
               type="text"
               value={novaMuda.origem}
@@ -67,19 +64,42 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
               required
             />
           </div>
-          <div className="col-md-6 mb-2 text-center">
-            <input
-              type="text"
-              value={novaMuda.imagem}
-              onChange={(e) => setNovaMuda({...novaMuda, imagem: e.target.value})}
-              placeholder="Imagem"
-              required
-            />
+          <div className="col-12 text-center m-2">
+          <input
+            type="file"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                // Verifica se o arquivo selecionado é uma imagem
+                if (file.type.startsWith('image/')) {
+                  // Se for uma imagem, salvar no servidor e pegar o link)
+                  // Atualizar o estado com a URL da imagem
+                  const reader = new FileReader();
+                  reader.onload = (event) => {
+                    const imageUrl = event.target?.result;
+                    if (imageUrl && typeof imageUrl === 'string') {
+                      setNovaMuda({ ...novaMuda, imagem: imageUrl });
+                    }
+                  };
+                  reader.readAsDataURL(file);
+                } else {
+                  // Se não for uma imagem, mostra uma mensagem de erro pra pessoa
+                  setErro('Por favor, selecione um arquivo de imagem.');
+                }
+              }
+            }}
+            accept="image/*"
+            style={{ display: 'none' }}
+            id="imagemInput"
+          />
+          <label htmlFor="imagemInput" className="btn btn-outline-primary btn-sm">
+            Selecionar Imagem
+          </label>
           </div>
         </div>
-        <div className="d-flex justify-content-end btn-sm pr-4">
+
+        <div className="d-flex justify-content-center btn-sm pr-4">
             <button onClick={handleAdicionarMuda} className="btn btn-primary text-white">Adicionar Muda</button>
-        </div>
       </div>
 
       <div>

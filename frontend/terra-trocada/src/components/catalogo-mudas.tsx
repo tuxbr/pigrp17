@@ -7,8 +7,8 @@ interface Props {
 const CatalogoMudas: React.FC<Props> = ({ mudasCatalogo }) => {
   return (
     <div>
-      <h2 className='text-center'>Catálogo de Mudas</h2>
-      <p className='text-center'>Abaixo estão todas as mudas disponíveis para troca, você poderá trocá-las pelas suas mudas cadastradas.</p>
+      <h1 className="mb-4 text-primary text-center">Catálogo de Mudas</h1>
+      <p className='text-center'>Abaixo estão todas as mudas disponíveis para troca, você poderá trocá-las pelas suas mudas cadastradas na tela "Trocar Mudas".</p>
       <div className="row">
         {mudasCatalogo.map(muda => (
           <div key={muda.id} className="col-md-4 mb-4">

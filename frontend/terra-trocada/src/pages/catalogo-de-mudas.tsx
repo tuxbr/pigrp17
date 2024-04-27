@@ -1,19 +1,10 @@
 import { useState } from 'react';
-import TrocarMuda from './trocar-muda';
 import { Muda } from '@/types/mudas';
+import CatalogoMudas from '@/components/catalogo-mudas';
+import NavbarLinks from '@/components/navbar';
+import Rodape from '@/components/footer';
 
 const TrocaDeMudas: React.FC = () => {
-
-  const [minhasMudas, setMinhasMudas] = useState<Muda[]>([]);
-  // const [minhasMudas, setMinhasMudas] = useState<Muda[]>([
-  //   {
-  //     id: 1,
-  //     nome: "MINHA MUDA ESTÁTICA",
-  //     especie: "MINHA",
-  //     origem: "Brasil",
-  //     imagem: "MINHA.jpg",
-  //   }
-  // ]);
 
   //TODO: Pegar esses dados abaixo da controller (migration) (Gui)
   const [mudasCatalogo, setMudasCatalogo] = useState<Muda[]>([
@@ -62,28 +53,14 @@ const TrocaDeMudas: React.FC = () => {
     
   ]);
 
-  const adicionarMuda = (novaMuda: Muda) => {
-    const novaMudaComId = {
-      ...novaMuda,
-      id: minhasMudas.length + 1
-    };
-
-    setMinhasMudas([...minhasMudas, novaMudaComId]);
-  };
-
-  const removerMuda = (id: number) => {
-    const novasMudas = minhasMudas.filter(muda => muda.id !== id);
-    setMinhasMudas(novasMudas);
-  };
-
   return (
-    <div>
-      <h1 className="mb-4 text-primary text-center">Trocar Mudas</h1>
-      <div className="row">
-          <TrocarMuda minhasMudas={minhasMudas} mudasCatalogo={mudasCatalogo} />
-        </div>
-        <div className='col-md-1'></div>
+    <div className="d-flex flex-column min-vh-100">
+      <NavbarLinks />
+      <div className="container mt-4">
+       <CatalogoMudas mudasCatalogo={mudasCatalogo} />
       </div>
+      <Rodape />
+    </div>
   );
 }
 

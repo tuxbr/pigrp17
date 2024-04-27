@@ -26,6 +26,12 @@ const NavbarLinks = () => {
             <Link href="/cadastro" className={`nav-link ${pathname === '/cadastro' ? 'active text-warning' : ''}`}>
               Cadastro
             </Link>
+            <Link href="/catalogo-de-mudas" className={`nav-link ${pathname === '/catalogo-de-mudas' ? 'active text-warning' : ''}`}>
+              Catálogo de Mudas
+            </Link>
+            <Link href="/minhas-mudas" className={`nav-link ${pathname === '/minhas-mudas' ? 'active text-warning' : ''}`}>
+              Minhas Mudas
+            </Link>
             <Link href="/trocar-mudas" className={`nav-link ${pathname === '/trocar-mudas' ? 'active text-warning' : ''}`}>
               Trocar Mudas
             </Link>
