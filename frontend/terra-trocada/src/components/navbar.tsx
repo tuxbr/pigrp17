@@ -35,6 +35,9 @@ const NavbarLinks = () => {
             <Link href="/trocar-mudas" className={`nav-link ${pathname === '/trocar-mudas' ? 'active text-warning' : ''}`}>
               Trocar Mudas
             </Link>
+            <Link href="/forum" className={`nav-link ${pathname === '/forum' ? 'active text-warning' : ''}`}>
+              Fórum
+            </Link>
             <Link href="/contato" className={`nav-link ${pathname === '/contato' ? 'active text-warning' : ''}`}>
               Contato
             </Link>
