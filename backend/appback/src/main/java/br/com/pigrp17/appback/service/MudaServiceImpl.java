@@ -8,7 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.pigrp17.appback.model.CatalogoMudas;
 import br.com.pigrp17.appback.model.Muda;
+import br.com.pigrp17.appback.repository.CatalogoMudaRepository;
 import br.com.pigrp17.appback.repository.MudaRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class MudaServiceImpl implements MudaService {
 
     @Autowired
     private MudaRepository repo;
+
+    @Autowired
+    private CatalogoMudaRepository catalogoMudaRepository;
 
     @Override
     public Muda getById(int id) {
@@ -50,5 +55,10 @@ public class MudaServiceImpl implements MudaService {
     @Override
     public void deleteById(int id) {
         repo.deleteById(id);
+    }
+
+    @Override
+    public List<CatalogoMudas> catalogoMudasList() { 
+        return catalogoMudaRepository.findAll();
     }
 }

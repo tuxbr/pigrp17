@@ -18,9 +18,39 @@ public class Usuario {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @Column(name = "cpf", nullable = false)
+    private String cpf;
+
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "senha", nullable = false)
+    private String senha;
+
     @Column(name = "localizacao", nullable = false)
     private String localizacao;
+
+    @Column(name = "longradouro", nullable = false)
+    private String longradouro;
+
+    @Column(name = "bairro", nullable = false)
+    private String bairro;
+
+    @Column(name = "numero", nullable = false)
+    private String numero;
+
+    @Column(name = "CEP", nullable = false)
+    private String CEP;
+
+    @Column(name = "complemento", nullable = false)
+    private String complemento;
+
+    @Column(name = "cidade", nullable = false)
+    private String cidade;
+
+    @Column(name = "celular", nullable = false)
+    private String celular;
+
+    @Column(name = "uf", nullable = false)
+    private String uf;
 }

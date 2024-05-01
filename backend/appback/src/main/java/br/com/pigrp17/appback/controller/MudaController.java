@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.pigrp17.appback.model.CatalogoMudas;
 import br.com.pigrp17.appback.model.Muda;
 import br.com.pigrp17.appback.service.MudaService;
 
@@ -79,6 +80,21 @@ public class MudaController {
         try {
             service.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @GetMapping("/catalogo")
+    public ResponseEntity<List<CatalogoMudas>> catalogoMudasList (@PathVariable(required = false) Integer page,
+            @PathVariable(required = false) Integer limit) {
+        try {
+            List<CatalogoMudas> catalogoMudas = service.catalogoMudasList();
+            if (catalogoMudas.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(catalogoMudas, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

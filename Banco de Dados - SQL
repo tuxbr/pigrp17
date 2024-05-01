@@ -5,6 +5,14 @@ CREATE TABLE Usuarios (
     Email VARCHAR(255) UNIQUE,
     Senha VARCHAR(255),
     Localizacao VARCHAR(255),
+    Cpf VARCHAR(11),
+    Cep VARCHAR(8),
+    Bairro VARCHAR(255),
+    Numero INTEGER,
+    Complemento VARCHAR(255),
+    Cidade VARCHAR(255),
+    Celular VARCHAR(11),
+    Uf VARCHAR(2)
     -- Outros campos de dados pessoais
 );
 
@@ -17,6 +25,14 @@ CREATE TABLE Mudas (
     Imagem VARCHAR(255),
     ProprietarioID INT,
     FOREIGN KEY (ProprietarioID) REFERENCES Usuarios(UserID)
+);
+
+CREATE TABLE Catalogo_Mudas (
+    id INT PRIMARY KEY,
+    nome VARCHAR(255),
+    descricao Varchar(255),
+    categoria VARCHAR(50),
+    imagem VARCHAR(255)
 );
 
 -- Tabela de Trocas
@@ -52,3 +68,18 @@ CREATE TABLE Avaliacoes (
     FOREIGN KEY (AvaliadorID) REFERENCES Usuarios(UserID),
     FOREIGN KEY (AvaliadoID) REFERENCES Usuarios(UserID)
 );
+
+CREATE TABLE Catalogo_Mudas (
+    id INT PRIMARY KEY,
+    nome VARCHAR(255),
+    descricao Varchar(255),
+    categoria VARCHAR(50),
+    imagem VARCHAR(255)
+);
+
+INSERT INTO Catalogo_Mudas (id, nome, descricao, categoria, imagem) VALUES
+(nextval('CATALOGO_MUDAS_SEQ'), 'Roseira', 'Roseira com flores vermelhas', 'Flores', 'roseira.jpg'),
+(nextval('CATALOGO_MUDAS_SEQ'), 'Girassol', 'Girassol alto com belos pétalas amarelas', 'Flores', 'girassol.jpg'),
+(nextval('CATALOGO_MUDAS_SEQ'), 'Hortênsia', 'Hortênsia com belas flores azuis', 'Flores', 'hortensia.jpg'),
+(nextval('CATALOGO_MUDAS_SEQ'), 'Bonsai', 'Bonsai estilo japonês com formato único', 'Árvores', 'bonsai.jpg'),
+(nextval('CATALOGO_MUDAS_SEQ'), 'Cacto', 'Cacto verde com espinhos', 'Suculentas', 'cacto.jpg');
