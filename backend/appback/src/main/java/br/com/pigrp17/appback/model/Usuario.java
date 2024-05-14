@@ -30,8 +30,8 @@ public class Usuario {
     @Column(name = "localizacao", nullable = false)
     private String localizacao;
 
-    @Column(name = "longradouro", nullable = false)
-    private String longradouro;
+    @Column(name = "logradouro", nullable = false)
+    private String logradouro;
 
     @Column(name = "bairro", nullable = false)
     private String bairro;
