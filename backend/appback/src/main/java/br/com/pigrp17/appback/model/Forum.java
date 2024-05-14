@@ -1,6 +1,7 @@
 package br.com.pigrp17.appback.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
@@ -30,6 +32,10 @@ public class Forum {
 
     @Column(name = "conteudo", nullable = false)
     private String conteudo;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private List<ComentarioForum> comentarios;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_hora", nullable = false)
