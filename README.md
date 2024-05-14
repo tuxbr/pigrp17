@@ -20,12 +20,12 @@ O frontend foi desenvolvido utilizando HTML, CSS, React (com Next.js) e Bootstra
 O backend foi desenvolvido utilizando Java 8 + Spring Boot + JPA Hibernate + RESTful, localizado na pasta `backend/appback` deste repositório.
 
 ## Tecnologias Utilizadas
-- Java 8 SDK
+- Java 17
 - Maven
 - React (com Next.js)
 - Bootstrap
 - VSCode
-- PostgreSQL 15
+- PostgreSQL
 - GitHub
 
 ## Requisitos para Executar o Projeto
@@ -40,11 +40,11 @@ Requisitos para executar o nosso projeto em sua máquina:
 
 ### Backend
 
-1. **Java 8 SDK**: [site oficial do Java](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html).
+1. **Java 17**: [site oficial do Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
 
 2. **Maven**: [site oficial do Maven](https://maven.apache.org/download.cgi).
 
-3. **PostgreSQL 15**: [site oficial do PostgreSQL](https://www.postgresql.org/download/).
+3. **PostgreSQL**: [site oficial do PostgreSQL](https://www.postgresql.org/download/).
 
 
 ## Como Subir o Projeto localmente
@@ -61,4 +61,11 @@ Requisitos para executar o nosso projeto em sua máquina:
     Isso iniciará o frontend localmente em: http://localhost:3000/
 
 2. Para rodar o backend:
-   - (Adicionar as instruções aqui)
+   - - navegue até o diretório `backend/appback` e execute os seguintes comandos:
+   ```bash
+    mvn clean install
+    ```
+    ```bash
+    java -jar target/appback-0.0.1-SNAPSHOT.jar
+    ```
+    Isso iniciará o frontend localmente em: http://localhost:8080/
