@@ -12,7 +12,7 @@ const TrocarMuda: React.FC<Props> = ({ minhasMudas, mudasCatalogo }) => {
 
   const handleTrocarMuda = () => {
     if (mudaSelecionada && mudaCatalogoSelecionada) {
-      console.log(`Trocar ${mudaSelecionada.nome} por ${mudaCatalogoSelecionada.nome}`);
+      console.log(`Trocar ${mudaSelecionada.nomePlanta} por ${mudaCatalogoSelecionada.nomePlanta}`);
     }
   };
 
@@ -22,18 +22,18 @@ const TrocarMuda: React.FC<Props> = ({ minhasMudas, mudasCatalogo }) => {
         <p>Selecione uma muda do catálogo e uma muda sua para efetuar a troca. Caso ainda não tenha uma muda cadastrada, você poderá cadastrar abaixo.</p>
         <div className='p-3 mb-4'>
           <span className='m-2'>Mudas do catálogo: </span>
-          <select className='m-2' onChange={(e) => setMudaCatalogoSelecionada(mudasCatalogo.find(muda => muda.id?.toString() === e.target.value) || null)}>
+          <select className='m-2' onChange={(e) => setMudaCatalogoSelecionada(mudasCatalogo.find(muda => muda.mudaId?.toString() === e.target.value) || null)}>
             <option value="">Selecione uma muda do catálogo</option>
             {mudasCatalogo.map(muda => (
-              <option key={muda.id} value={muda.id?.toString()}>{muda.nome}</option>
+              <option key={muda.mudaId} value={muda.mudaId?.toString()}>{muda.nomePlanta}</option>
             ))}
           </select>
 
-          <span className='m-2'>Suas mudas:</span>
-          <select className='m-2' onChange={(e) => setMudaSelecionada(minhasMudas.find(muda => muda.id?.toString() === e.target.value) || null)}>
+          <span className='m-2'>Suas mudas: 1</span>
+          <select className='m-2' onChange={(e) => setMudaSelecionada(minhasMudas.find(muda => muda.mudaId?.toString() === e.target.value) || null)}>
             <option value="">Selecione uma muda</option>
-            {minhasMudas.map(muda => (
-              <option key={muda.id} value={muda.id?.toString()}>{muda.nome}</option>
+            {minhasMudas?.map(muda => (
+              <option key={muda.mudaId} value={muda.mudaId?.toString()}>{muda.nomePlanta}</option>
             ))}
           </select>
 

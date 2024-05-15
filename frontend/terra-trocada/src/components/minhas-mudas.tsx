@@ -9,25 +9,64 @@ interface Props {
 
 const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda }) => {
   const [novaMuda, setNovaMuda] = useState<Muda>({
-    nome: '',
-    especie: '',
-    origem: '',
-    imagem: ''
+    nomePlanta: '',
+    descricao: '',
+    categoria: '',
+    imagem: '',
+    proprietarioId: 0
   });
   const [erro, setErro] = useState<string>('');
 
-  const handleAdicionarMuda = () => {
-    if (novaMuda.nome && novaMuda.especie && novaMuda.origem && novaMuda.imagem) {
-      adicionarMuda(novaMuda);
-      setNovaMuda({
-        nome: '',
-        especie: '',
-        origem: '',
-        imagem: ''
+  const handleAdicionarMuda = async () => {
+    try {
+      const response = await fetch('/api/mudas', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nomePlanta: novaMuda.nomePlanta,
+          descricao: novaMuda.descricao,
+          categoria: novaMuda.categoria,
+          imagem: novaMuda.imagem, 
+          proprietarioId: 1
+        })
       });
-      setErro('');
-    } else {
-      setErro('Por favor, preencha todos os campos antes de adicionar a muda.');
+  
+      if (response.ok) {
+        const mudaAdicionada = await response.json();
+        adicionarMuda(mudaAdicionada);
+        setNovaMuda({
+          nomePlanta: '',
+          descricao: '',
+          categoria: '',
+          imagem: '',
+          proprietarioId: 0
+        });
+        setErro('');
+      } else {
+        setErro('Erro ao adicionar a muda.');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar solicitação:', error);
+      setErro('Erro ao adicionar a muda.');
+    }
+  };
+
+  const handleRemoverMuda = async (id: number) => {
+    try {
+      const response = await fetch(`/api/mudas/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        removerMuda(id);
+      } else {
+        setErro('Erro ao remover a muda.');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar solicitação:', error);
+      setErro('Erro ao remover a muda.');
     }
   };
 
@@ -37,11 +76,11 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
       <p className='text-center'>Cadastre abaixo (ou remova) suas mudas para efetuar suas trocas.</p>
       {erro && <p className="text-danger text-center">{erro}</p>}
       <div className='row justify-content-center'>
-          <div className="col-12 text-center m-2">
+      <div className="col-12 text-center m-2">
             <input
               type="text"
-              value={novaMuda.nome}
-              onChange={(e) => setNovaMuda({...novaMuda, nome: e.target.value})}
+              value={novaMuda.nomePlanta}
+              onChange={(e) => setNovaMuda({...novaMuda, nomePlanta: e.target.value})}
               placeholder="Nome"
               required
             />
@@ -49,8 +88,8 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
           <div className="col-12 text-center m-2">
             <input
               type="text"
-              value={novaMuda.especie}
-              onChange={(e) => setNovaMuda({...novaMuda, especie: e.target.value})}
+              value={novaMuda.categoria}
+              onChange={(e) => setNovaMuda({...novaMuda, categoria: e.target.value})}
               placeholder="Espécie"
               required
             />
@@ -58,8 +97,8 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
           <div className="col-12 text-center m-2">
             <input
               type="text"
-              value={novaMuda.origem}
-              onChange={(e) => setNovaMuda({...novaMuda, origem: e.target.value})}
+              value={novaMuda.descricao}
+              onChange={(e) => setNovaMuda({...novaMuda, descricao: e.target.value})}
               placeholder="Origem"
               required
             />
@@ -70,22 +109,14 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
             onChange={(e) => {
               const file = e.target.files?.[0];
               if (file) {
-                // Verifica se o arquivo selecionado é uma imagem
-                if (file.type.startsWith('image/')) {
-                  // Se for uma imagem, salvar no servidor e pegar o link)
-                  // Atualizar o estado com a URL da imagem
-                  const reader = new FileReader();
-                  reader.onload = (event) => {
-                    const imageUrl = event.target?.result;
-                    if (imageUrl && typeof imageUrl === 'string') {
-                      setNovaMuda({ ...novaMuda, imagem: imageUrl });
-                    }
-                  };
-                  reader.readAsDataURL(file);
-                } else {
-                  // Se não for uma imagem, mostra uma mensagem de erro pra pessoa
-                  setErro('Por favor, selecione um arquivo de imagem.');
-                }
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                  const base64Image = event.target?.result;
+                  if (base64Image && typeof base64Image === 'string') {
+                    setNovaMuda({ ...novaMuda, imagem: base64Image });
+                  }
+                };
+                reader.readAsDataURL(file);
               }
             }}
             accept="image/*"
@@ -103,17 +134,17 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
       </div>
 
       <div>
-        {minhasMudas.map(muda => (
-          <div key={muda.id} className="col-md-4 mb-4">
+        {minhasMudas?.map(muda => (
+          <div key={muda.mudaId} className="col-md-4 mb-4">
             <div className="card">
               <div style={{ width: '100%', height: '150px', overflow: 'hidden' }}>
-                <img src={muda.imagem} className="card-img-top" alt={muda.nome} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                <img src={muda.imagem} className="card-img-top" alt={muda.nomePlanta} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
               </div>
               <div className="card-body">
-                <h5 className="card-title">{muda.nome}</h5>
-                <p className="card-text">Espécie: {muda.especie}</p>
-                <p className="card-text">Origem: {muda.origem}</p>
-                <button onClick={() => muda.id !== undefined && removerMuda(muda.id)} className="btn btn-danger">Remover Muda</button>
+                <h5 className="card-title">{muda.nomePlanta}</h5>
+                <p className="card-text">Espécie: {muda.descricao}</p>
+                <p className="card-text">Origem: {muda.categoria}</p>
+                <button onClick={() => muda.mudaId !== undefined && handleRemoverMuda(muda.mudaId)} className="btn btn-danger">Remover Muda</button>
               </div>
             </div>
           </div>

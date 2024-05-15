@@ -29,7 +29,7 @@ export default function TrocarMudasPage() {
   };
 
   const removerMuda = (id: number) => {
-    const novasMudas = minhasMudas.filter(muda => muda.id !== id);
+    const novasMudas = minhasMudas.filter(muda => muda.mudaId !== id);
     setMinhasMudas(novasMudas);
   };
   

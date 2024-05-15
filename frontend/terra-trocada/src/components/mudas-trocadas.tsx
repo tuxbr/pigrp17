@@ -59,12 +59,12 @@ const MinhasMudasTrocadas: React.FC<Props> = ({ mudasTrocadas }) => {
           <div key={index} className="col-md-4 mb-4">
             <div className="card">
               <div style={{ width: '100%', height: '150px', overflow: 'hidden' }}>
-                <img src={muda.imagem} className="card-img-top" alt={muda.nome} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                <img src={muda.imagem} className="card-img-top" alt={muda.nomePlanta} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
               </div>
               <div className="card-body">
-                <h5 className="card-title">{muda.nome}</h5>
-                <p className="card-text">Espécie: {muda.especie}</p>
-                <p className="card-text">Origem: {muda.origem}</p>
+                <h5 className="card-title">{muda.nomePlanta}</h5>
+                <p className="card-text">Origem: {muda.categoria}</p>
+                <p className="card-text">Descrição: {muda.descricao}</p>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <label className="mr-2">Avaliação: </label>
                   {renderStars(`muda-${index}`)}

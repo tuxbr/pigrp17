@@ -1,7 +1,8 @@
 export interface Muda {
-    id?: number;
-    nome: string;
-    especie: string;
-    origem: string;
+    mudaId?: number;
+    nomePlanta: string;
+    descricao: string;
+    categoria: string;
     imagem: string;
+    proprietarioId: number
 }

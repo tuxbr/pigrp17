@@ -26,7 +26,7 @@ public class Muda {
     @Column(name = "categoria", nullable = false)
     private String categoria;
 
-    @Column(name = "imagem")
+    @Column(name = "imagem", columnDefinition = "TEXT")
     private String imagem;
 
     @Column(name = "proprietario_id", nullable = false)
