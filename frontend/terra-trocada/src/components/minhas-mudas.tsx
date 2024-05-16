@@ -100,6 +100,7 @@ const MinhasMudas: React.FC = () => {
       <div className='row justify-content-center'>
       <div className="col-12 text-center m-2">
             <input
+              className='col-6'
               type="text"
               value={novaMuda.nomePlanta}
               onChange={(e) => setNovaMuda({...novaMuda, nomePlanta: e.target.value})}
@@ -109,19 +110,20 @@ const MinhasMudas: React.FC = () => {
           </div >
           <div className="col-12 text-center m-2">
             <input
+              className='col-6'
               type="text"
               value={novaMuda.categoria}
               onChange={(e) => setNovaMuda({...novaMuda, categoria: e.target.value})}
-              placeholder="Espécie"
+              placeholder="Categoria"
               required
             />
           </div>
           <div className="col-12 text-center m-2">
-            <input
-              type="text"
+            <textarea
+              className='col-6'
               value={novaMuda.descricao}
               onChange={(e) => setNovaMuda({...novaMuda, descricao: e.target.value})}
-              placeholder="Origem"
+              placeholder="Descrição"
               required
             />
           </div>
@@ -164,8 +166,8 @@ const MinhasMudas: React.FC = () => {
               </div>
               <div className="card-body">
                 <h5 className="card-title">{muda.nomePlanta}</h5>
-                <p className="card-text">Espécie: {muda.descricao}</p>
-                <p className="card-text">Origem: {muda.categoria}</p>
+                <p className="card-text">Categoria: {muda.categoria}</p>
+                <p className="card-text">Descrição: {muda.descricao}</p>
                 <button onClick={() => muda.mudaId !== undefined && handleRemoverMuda(muda.mudaId)} className="btn btn-danger">Remover Muda</button>
               </div>
             </div>

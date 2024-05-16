@@ -23,7 +23,7 @@ public class ComentarioForum {
   @Column(name = "autor", nullable = false)
   private String autor;
 
-  @Column(name = "cometario", nullable = false)
+  @Column(name = "comentario", nullable = false)
   private String comentario;
 
   @Temporal(TemporalType.TIMESTAMP)
