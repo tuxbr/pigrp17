@@ -6,3 +6,11 @@ export interface Muda {
     imagem: string;
     proprietarioId: number
 }
+
+export interface MudaCatalogo {
+    id?: number,
+    nome: string,
+    descricao: string,
+    categoria: string,
+    imagem: string
+}

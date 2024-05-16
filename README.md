@@ -17,6 +17,7 @@
 ## Descrição
 O frontend foi desenvolvido utilizando HTML, CSS, React (com Next.js) e Bootstrap, localizado na pasta `frontend/terratrocada` deste repositório. 
 O backend foi desenvolvido utilizando Java 8 + Spring Boot + JPA Hibernate + RESTful, localizado na pasta `backend/appback` deste repositório.
+O sistema gerenciador de banco de dados utilizado foi o H2 DATABASE (SQL).
 
 ## Tecnologias Utilizadas
 - Java 17
@@ -24,7 +25,7 @@ O backend foi desenvolvido utilizando Java 8 + Spring Boot + JPA Hibernate + RES
 - React (com Next.js)
 - Bootstrap
 - VSCode
-- PostgreSQL
+- H2 DATABASE (SQL)
 - GitHub
 
 ## Requisitos para Executar o Projeto
@@ -33,17 +34,17 @@ Requisitos para executar o nosso projeto em sua máquina:
 
 ### Frontend
 
-1. **Node.js**: [site oficial do Node.js](https://nodejs.org/).
+1. **Node.js**
 
-2. **npm ou Yarn**: [site oficial do Yarn](https://yarnpkg.com/).
+2. **npm ou Yarn**
 
 ### Backend
 
-1. **Java 17**: [site oficial do Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
+1. **Java 17**
 
-2. **Maven**: [site oficial do Maven](https://maven.apache.org/download.cgi).
+2. **Maven**
 
-3. **PostgreSQL**: [site oficial do PostgreSQL](https://www.postgresql.org/download/).
+3. **H2 DATABASE (SQL)**
 
 
 ## Como Subir o Projeto localmente

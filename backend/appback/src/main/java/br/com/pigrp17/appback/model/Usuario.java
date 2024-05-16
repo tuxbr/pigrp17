@@ -5,13 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
+@Table(name = "Usuarios")
 @Data
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private int userId;
 
@@ -30,14 +32,11 @@ public class Usuario {
     @Column(name = "localizacao", nullable = false)
     private String localizacao;
 
-    @Column(name = "logradouro", nullable = false)
-    private String logradouro;
-
     @Column(name = "bairro", nullable = false)
     private String bairro;
 
     @Column(name = "numero", nullable = false)
-    private String numero;
+    private Integer numero;
 
     @Column(name = "CEP", nullable = false)
     private String CEP;
