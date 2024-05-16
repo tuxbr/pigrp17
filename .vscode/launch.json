@@ -8,7 +8,7 @@
             "type": "java",
             "name": "Launch Java Program",
             "request": "launch",
-            "mainClass": "AppbackApplication"
+            "mainClass": "br.com.pigrp17.appback.AppbackApplication"
         },
 
         {

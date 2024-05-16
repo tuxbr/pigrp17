@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Muda } from '@/types/mudas';
 
-interface Props {
-  minhasMudas: Muda[];
-  adicionarMuda: (novaMuda: Muda) => void;
-  removerMuda: (id: number) => void;
-}
+const MinhasMudas: React.FC = () => {
+  const [minhasMudasCadastradas, setMinhasMudas] = useState<Muda[]>([]);
 
-const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda }) => {
   const [novaMuda, setNovaMuda] = useState<Muda>({
     nomePlanta: '',
     descricao: '',
@@ -15,7 +11,26 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
     imagem: '',
     proprietarioId: 0
   });
+
   const [erro, setErro] = useState<string>('');
+
+  const removerMudas = (id: number) => {
+    const novasMudas = minhasMudasCadastradas.filter(muda => muda.mudaId !== id);
+    setMinhasMudas(novasMudas);
+  };
+
+  const fetchMudas = async () => {
+    try {
+      const response = await fetch('/api/mudas');
+      if (!response.ok) {
+        throw new Error('Erro no GET das mudas.');
+      }
+      const data = await response.json();
+      setMinhasMudas(data);
+    } catch (error) {
+      console.error('Erro no GET das mudas:', error);
+    }
+  };
 
   const handleAdicionarMuda = async () => {
     try {
@@ -34,8 +49,10 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
       });
   
       if (response.ok) {
+        // Adiciona a nova muda NA LISTA
         const mudaAdicionada = await response.json();
-        adicionarMuda(mudaAdicionada);
+        setMinhasMudas([...minhasMudasCadastradas, mudaAdicionada]);
+
         setNovaMuda({
           nomePlanta: '',
           descricao: '',
@@ -48,7 +65,7 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
         setErro('Erro ao adicionar a muda.');
       }
     } catch (error) {
-      console.error('Erro ao enviar solicitação:', error);
+      console.error('Erro:', error);
       setErro('Erro ao adicionar a muda.');
     }
   };
@@ -58,17 +75,22 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
       const response = await fetch(`/api/mudas/${id}`, {
         method: 'DELETE',
       });
-
+  
       if (response.ok) {
-        removerMuda(id);
+        // Remove a muda da LISTA
+        removerMudas(id);
       } else {
         setErro('Erro ao remover a muda.');
       }
     } catch (error) {
-      console.error('Erro ao enviar solicitação:', error);
+      console.error('Erro:', error);
       setErro('Erro ao remover a muda.');
     }
   };
+
+  useEffect(() => {
+    fetchMudas();
+  }, []);
 
   return (
     <div>
@@ -133,8 +155,8 @@ const MinhasMudas: React.FC<Props> = ({ minhasMudas, adicionarMuda, removerMuda 
             <button onClick={handleAdicionarMuda} className="btn btn-primary text-white">Adicionar Muda</button>
       </div>
 
-      <div>
-        {minhasMudas?.map(muda => (
+      <div className="row mt-5">
+        {minhasMudasCadastradas?.map(muda => (
           <div key={muda.mudaId} className="col-md-4 mb-4">
             <div className="card">
               <div style={{ width: '100%', height: '150px', overflow: 'hidden' }}>
