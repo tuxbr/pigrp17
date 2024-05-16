@@ -1,5 +1,4 @@
-# pigrp17
-Projeto Integrador Grupo 35
+# Projeto Integrador Grupo 35
 
 ## Integrantes
 - Beatriz Ferro de Carvalho Benvenuto - Bbenvennuto 
@@ -7,7 +6,7 @@ Projeto Integrador Grupo 35
 - Isabella Moussa Macedo - isabellammacedo
 - Nei Guilherme Silva - gsilvaro11
 - Raimundo Marcio Nunes Costa - tuxbr/ tuxgrupomx
-- Renato Ramalho Lima - (adicionar usuário do Renato)
+- Renato Ramalho Lima
 
 ## Projeto Revisado
 [PDF da Segunda Entrega](adicionar o link do que ainda vai ser entregue na segunda entrega)
