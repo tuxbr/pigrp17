@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Muda, MudaCatalogo } from '@/types/mudas';
+import router from 'next/router';
 
 interface Props {
   minhasMudas: Muda[];
@@ -11,6 +12,7 @@ const TrocarMuda: React.FC<Props> = ({ minhasMudas }) => {
   const [mudaCadastradaSelecionada, setMinhaMudaSelecionada] = useState<Muda | null>(null);
   const [mudaCatalogoSelecionada, setMudaCatalogoSelecionada] = useState<MudaCatalogo | null>(null);
   const [trocaDireita, setTrocaDireita] = useState<boolean>(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleTrocaLado = () => {
     setTrocaDireita(!trocaDireita);
@@ -51,13 +53,30 @@ const TrocarMuda: React.FC<Props> = ({ minhasMudas }) => {
     fetchMudasCatalogo();
   }, []);
 
-  const handleTrocarMuda = () => {
-    console.log('mudaCatalogoSelecionada: ', mudaCatalogoSelecionada);
-    console.log('mudaCadastradaSelecionada: ', mudaCadastradaSelecionada);
+  const handleTrocarMuda = async () => {
     if (mudaCatalogoSelecionada && mudaCadastradaSelecionada) {
       console.log(`Trocar ${mudaCatalogoSelecionada.nome} por ${mudaCadastradaSelecionada.nomePlanta}`);
-      setTrocaDireita(!trocaDireita);
-    }
+      
+      //URL do POST
+      const url = `/api/trocas/trocar-mudas?userId=1&mudaId=${mudaCadastradaSelecionada.mudaId}&catalogoMudaId=${mudaCatalogoSelecionada.id}`;
+  
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      };
+
+      try {
+        const response = await fetch(url, requestOptions)
+        if (response.ok) {
+          setShowSuccessMessage(true);
+          setTimeout(() => {
+            router.push('/minhas-mudas');
+          }, 3000); // Redireciona depois de 3 segundos
+        }
+      } catch (error) {
+        console.error('Erro:', error);
+      }
+    };
   };
 
   const handleSelectMudaCatalogo = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -133,6 +152,27 @@ const TrocarMuda: React.FC<Props> = ({ minhasMudas }) => {
           </div>
         </div>
       </div>
+
+      {/* Pop-up de sucesso */}
+      {showSuccessMessage && (
+        <div className="success-message">
+          <p>Troca efetuada com sucesso!</p>
+        </div>
+      )}
+
+      <style jsx>{`
+        .success-message {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #fff;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+      `}</style>
     </div>
   );
 }

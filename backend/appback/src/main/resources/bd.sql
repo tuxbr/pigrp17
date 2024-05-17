@@ -18,32 +18,18 @@ CREATE TABLE Usuarios (
 
 -- Tabela de Mudas
 CREATE TABLE Mudas (
-    MudaID INT PRIMARY KEY,
-    NomePlanta VARCHAR(255),
-    Descricao TEXT,
-    Categoria VARCHAR(50),
-    Imagem VARCHAR(255),
-    ProprietarioID INT,
-    FOREIGN KEY (ProprietarioID) REFERENCES Usuarios(user_id)
-);
-
--- Tabela de Trocas
-CREATE TABLE Trocas (
-    TrocaID INT PRIMARY KEY,
-    OfertanteID INT,
-    RecebedorID INT,
-    MudaOfertadaID INT,
-    MudaDesejadaID INT,
-    Status VARCHAR(50),
-    FOREIGN KEY (OfertanteID) REFERENCES Usuarios(user_id),
-    FOREIGN KEY (RecebedorID) REFERENCES Usuarios(user_id),
-    FOREIGN KEY (MudaOfertadaID) REFERENCES Mudas(MudaID),
-    FOREIGN KEY (MudaDesejadaID) REFERENCES Mudas(MudaID)
+    muda_id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_planta VARCHAR(255),
+    descricao TEXT,
+    categoria VARCHAR(50),
+    imagem TEXT,
+    proprietario_id INT,
+    FOREIGN KEY (proprietario_id) REFERENCES Usuarios(user_id)
 );
 
 -- Tabela de Fórum
 CREATE TABLE Forum (
-    PostID INT PRIMARY KEY,
+    PostID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT,
     Conteudo TEXT,
     DataHora DATETIME,
@@ -52,7 +38,7 @@ CREATE TABLE Forum (
 
 -- Tabela de Avaliações
 CREATE TABLE Avaliacoes (
-    AvaliacaoID INT PRIMARY KEY,
+    AvaliacaoID INT AUTO_INCREMENT PRIMARY KEY,
     AvaliadorID INT,
     AvaliadoID INT,
     Comentario TEXT,
@@ -61,12 +47,25 @@ CREATE TABLE Avaliacoes (
     FOREIGN KEY (AvaliadoID) REFERENCES Usuarios(user_id)
 );
 
+-- Tabela de Catálogo de Mudas
 CREATE TABLE Catalogo_Mudas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255),
     descricao VARCHAR(255),
     categoria VARCHAR(50),
-    imagem VARCHAR(255)
+    imagem TEXT
+);
+
+-- Tabela de Trocas
+CREATE TABLE Trocas (
+    troca_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    muda_id INT,
+    catalogo_muda_id INT,
+    data_troca TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES Usuarios(user_id),
+    FOREIGN KEY (muda_id) REFERENCES Mudas(muda_id) ON DELETE CASCADE,
+    FOREIGN KEY (catalogo_muda_id) REFERENCES Catalogo_Mudas(id) ON DELETE CASCADE
 );
 
 INSERT INTO Catalogo_Mudas (nome, descricao, categoria, imagem) VALUES

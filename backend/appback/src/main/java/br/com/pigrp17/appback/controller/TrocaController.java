@@ -1,86 +1,85 @@
 package br.com.pigrp17.appback.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.pigrp17.appback.model.Troca;
 import br.com.pigrp17.appback.service.TrocaService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/trocas")
 public class TrocaController {
 
     @Autowired
-    private TrocaService service;
+    private TrocaService trocaService;
 
-    @GetMapping
-    public ResponseEntity<List<Troca>> getAllTrocas(@PathVariable(required = false) Integer page,
-            @PathVariable(required = false) Integer limit) {
+    @PostMapping("/trocar-mudas")
+    public ResponseEntity<String> trocarMudas(@RequestParam int userId, @RequestParam int mudaId, @RequestParam int catalogoMudaId) {
         try {
-            List<Troca> trocas = service.getAll(page, limit);
-            if (trocas.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(trocas, HttpStatus.OK);
+            trocaService.trocarMudas(userId, mudaId, catalogoMudaId);
+            return ResponseEntity.ok("Troca realizada com sucesso.");
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(500).body("Erro ao realizar troca: " + e.getMessage());
         }
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Troca> getTroca(@PathVariable int id) {
+    @GetMapping
+    public ResponseEntity<List<Troca>> getAllTrocas(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer limit) {
         try {
-            Troca troca = service.getById(id);
-            if (troca == null) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            List<Troca> trocas = trocaService.getAll(page, limit);
+            if (trocas.isEmpty()) {
+                return ResponseEntity.noContent().build();
             }
-            return new ResponseEntity<>(troca, HttpStatus.OK);
+            return ResponseEntity.ok(trocas);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Troca> getTrocaById(@PathVariable int id) {
+        Troca troca = trocaService.getById(id);
+        if (troca != null) {
+            return ResponseEntity.ok(troca);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
-    public ResponseEntity<Troca> postTroca(@RequestBody Troca troca) {
+    public ResponseEntity<Troca> saveTroca(@RequestBody Troca troca) {
         try {
-            Troca newTroca = service.save(troca);
-            return new ResponseEntity<>(newTroca, HttpStatus.CREATED);
+            Troca savedTroca = trocaService.save(troca);
+            return ResponseEntity.ok(savedTroca);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(500).build();
         }
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Troca> updateTroca(@PathVariable int id,
-            @RequestBody Troca troca) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Troca> updateTroca(@PathVariable int id, @RequestBody Troca troca) {
         try {
-            Troca newTroca = service.update(id, troca);
-            if (newTroca == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            Troca updatedTroca = trocaService.update(id, troca);
+            if (updatedTroca != null) {
+                return ResponseEntity.ok(updatedTroca);
+            } else {
+                return ResponseEntity.notFound().build();
             }
-            return new ResponseEntity<>(newTroca, HttpStatus.OK);
-
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(500).build();
         }
     }
 
-    public ResponseEntity<HttpStatus> deleteTroca(@PathVariable int id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTroca(@PathVariable int id) {
         try {
-            service.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            trocaService.deleteById(id);
+            return ResponseEntity.noContent().build();
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(500).build();
         }
     }
 }

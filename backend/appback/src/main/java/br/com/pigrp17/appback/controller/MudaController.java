@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pigrp17.appback.model.CatalogoMudas;
+import br.com.pigrp17.appback.model.CatalogoMuda;
 import br.com.pigrp17.appback.model.Muda;
 import br.com.pigrp17.appback.service.MudaService;
 
@@ -89,10 +89,10 @@ public class MudaController {
 
 
     @GetMapping("/catalogo")
-    public ResponseEntity<List<CatalogoMudas>> catalogoMudasList (@PathVariable(required = false) Integer page,
+    public ResponseEntity<List<CatalogoMuda>> catalogoMudasList (@PathVariable(required = false) Integer page,
             @PathVariable(required = false) Integer limit) {
         try {
-            List<CatalogoMudas> catalogoMudas = service.catalogoMudasList();
+            List<CatalogoMuda> catalogoMudas = service.catalogoMudasList();
             if (catalogoMudas.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }

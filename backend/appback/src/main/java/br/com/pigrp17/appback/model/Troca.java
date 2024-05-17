@@ -1,50 +1,76 @@
 package br.com.pigrp17.appback.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Data;
+import jakarta.persistence.Table;
 
 @Entity
-@Data
+@Table(name = "Trocas")
 public class Troca {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "troca_id", nullable = false)
     private int trocaId;
 
-    @Column(name = "ofertante_id", nullable = false)
-    private int ofertanteId;
+    @Column(name = "usuario_id", nullable = false)
+    private int usuarioId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "orfertante_id", insertable = false, updatable = false)
-    private Usuario ofertante;
+    @Column(name = "muda_id", nullable = false)
+    private int mudaId;
 
-    @Column(name = "recebedor_id")
-    private int recebedorId;
+    @Column(name = "catalogo_muda_id", nullable = false)
+    private int catalogoMudaId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "recebedor_id", insertable = false, updatable = false)
-    private Usuario recebedor;
+    @Column(name = "data_troca", nullable = false)
+    private LocalDateTime dataTroca;
 
-    @Column(name = "muda_ofertada_id", nullable = false)
-    private int mudaOfertadaId;
+    public Troca() {
+        this.dataTroca = LocalDateTime.now();
+    }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "muda_ofertada_id", insertable = false, updatable = false)
-    private Muda mudaOfertada;
+    public int getTrocaId() {
+        return trocaId;
+    }
 
-    @Column(name = "muda_desejada_id")
-    private int mudaDesejadaId;
+    public void setTrocaId(int trocaId) {
+        this.trocaId = trocaId;
+    }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "muda_desejada_id", insertable = false, updatable = false)
-    private Muda mudaDesejada;
+    public int getUsuarioId() {
+        return usuarioId;
+    }
 
-    @Column(name = "status")
-    private String status;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public int getMudaId() {
+        return mudaId;
+    }
+
+    public void setMudaId(int mudaId) {
+        this.mudaId = mudaId;
+    }
+
+    public int getCatalogoMudaId() {
+        return catalogoMudaId;
+    }
+
+    public void setCatalogoMudaId(int catalogoMudaId) {
+        this.catalogoMudaId = catalogoMudaId;
+    }
+
+    public LocalDateTime getDataTroca() {
+        return dataTroca;
+    }
+
+    public void setDataTroca(LocalDateTime dataTroca) {
+        this.dataTroca = dataTroca;
+    }
 }

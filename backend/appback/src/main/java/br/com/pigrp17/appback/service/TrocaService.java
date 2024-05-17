@@ -14,4 +14,7 @@ public interface TrocaService {
     Troca update(int id, Troca troca);
 
     void deleteById(int id);
+
+    void trocarMudas(int userId, int mudaId, int catalogoMudaId); // Novo método
+    
 }

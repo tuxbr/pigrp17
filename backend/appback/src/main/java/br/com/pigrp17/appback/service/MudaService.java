@@ -2,7 +2,7 @@ package br.com.pigrp17.appback.service;
 
 import java.util.List;
 
-import br.com.pigrp17.appback.model.CatalogoMudas;
+import br.com.pigrp17.appback.model.CatalogoMuda;
 import br.com.pigrp17.appback.model.Muda;
 
 public interface MudaService {
@@ -10,7 +10,7 @@ public interface MudaService {
 
     List<Muda> getAll(Integer page, Integer limit);
 
-    List<CatalogoMudas> catalogoMudasList();
+    List<CatalogoMuda> catalogoMudasList();
 
     Muda save(Muda muda);
 

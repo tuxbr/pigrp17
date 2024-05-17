@@ -5,13 +5,13 @@ import { useRouter } from 'next/router';
 
 export default function Cadastro() {
   // Estado inicial do objeto do cadastro
+
   const [formData, setFormData] = useState({
     nome: '',
     cpf: '',
     email: '',
     senha: '',
     localizacao: '',
-    logradouro: '',
     bairro: '',
     numero: '',
     cep: '',
@@ -49,7 +49,7 @@ export default function Cadastro() {
         setShowSuccessMessage(true);
         setTimeout(() => {
           router.push('/minhas-mudas');
-        }, 6000); // Redireciona depois de 3 segundos
+        }, 3000); // Redireciona depois de 3 segundos
       }
     } catch (error) {
       console.error('Erro ao enviar solicitação:', error);
@@ -87,11 +87,6 @@ export default function Cadastro() {
           <div className="mb-3">
             <label htmlFor="localizacao" className="form-label">Localização</label>
             <input type="text" className="form-control" id="localizacao" name="localizacao" onChange={handleChange} required />
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="logradouro" className="form-label">Logradouro</label>
-            <input type="text" className="form-control" id="logradouro" name="logradouro" onChange={handleChange} required />
           </div>
 
           <div className="mb-3">
