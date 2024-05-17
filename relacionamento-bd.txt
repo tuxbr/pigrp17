@@ -1,0 +1,70 @@
+
+https://www.dbdiagram.io/d
+
+Table "Usuarios" {
+  "user_id" INT [pk, increment]
+  "nome" VARCHAR(255)
+  "cpf" VARCHAR(11)
+  "email" VARCHAR(255) [unique]
+  "senha" VARCHAR(255)
+  "localizacao" VARCHAR(255)
+  "bairro" VARCHAR(255)
+  "numero" INTEGER
+  "CEP" VARCHAR(8)
+  "complemento" VARCHAR(255)
+  "cidade" VARCHAR(255)
+  "celular" VARCHAR(11)
+  "uf" VARCHAR(2)
+}
+
+Table "Mudas" {
+  "muda_id" INT [pk, increment]
+  "nome_planta" VARCHAR(255)
+  "descricao" TEXT
+  "categoria" VARCHAR(50)
+  "imagem" TEXT
+  "proprietario_id" INT
+}
+
+Table "Catalogo_Mudas" {
+  "id" INT [pk, increment]
+  "nome" VARCHAR(255)
+  "descricao" VARCHAR(255)
+  "categoria" VARCHAR(50)
+  "imagem" TEXT
+}
+
+Table "Trocas" {
+  "troca_id" INT [pk, increment]
+  "usuario_id" INT
+  "muda_id" INT
+  "catalogo_muda_id" INT
+  "data_troca" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "Comentarios" {
+  "id" INT [pk, increment]
+  "autor" VARCHAR(255)
+  "avaliacao" INT
+  "comentario" TEXT
+  "data" TIMESTAMP
+  "pode_responder" BOOLEAN
+}
+
+Table "Respostas_Comentarios" {
+  "id" INT [pk, increment]
+  "autor" VARCHAR(255)
+  "comentario" TEXT
+  "data" TIMESTAMP
+  "comment_id" INT
+}
+
+Ref:"Usuarios"."user_id" < "Mudas"."proprietario_id"
+
+Ref:"Usuarios"."user_id" < "Trocas"."usuario_id"
+
+Ref:"Mudas"."muda_id" < "Trocas"."muda_id" [delete: cascade]
+
+Ref:"Catalogo_Mudas"."id" < "Trocas"."catalogo_muda_id" [delete: cascade]
+
+Ref:"Comentarios"."id" < "Respostas_Comentarios"."comment_id"

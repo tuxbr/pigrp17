@@ -13,4 +13,5 @@ export interface CommentResponse {
     autor?: string;
     comentario: string;
     data: string;
+    comentarioPai: { id: any; }
 }

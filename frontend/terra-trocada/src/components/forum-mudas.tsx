@@ -1,48 +1,32 @@
+import React, { useState, useEffect } from 'react';
 import { Comment, CommentResponse } from '@/types/comment';
-import React, { useState } from 'react';
 
 const ForumMudas: React.FC = () => {
-  // Dados do fórum (depois pegar esses aqui vindos do back)
-  const [forumData, setForumData] = useState<Comment[]>([
-    {
-      id: "1",
-      autor: 'Maria',
-      avaliacao: 4,
-      comentario: 'Ótima experiência de troca de mudas, recomendo!',
-      data: '2024-04-27T08:30:00Z',
-      respostas: [],
-      podeResponder: true
-    },
-    {
-      id: "2",
-      autor: 'João',
-      avaliacao: 5,
-      comentario: 'Troca de mudas foi rápida e eficiente, adorei!',
-      data: '2024-04-26T12:15:00Z',
-      respostas: [
-        {
-          id: "1", // ID da resposta
-          autor: 'Ana', // Autor da resposta
-          comentario: 'Que bom que você teve uma boa experiência!', // Conteúdo da resposta
-          data: '2024-04-27T09:00:00Z',
-        }
-      ],
-      podeResponder: true
-    },
-  ]);
-
+  const [forumData, setForumData] = useState<Comment[]>([]);
   const [novoComentario, setNovoComentario] = useState('');
   const [novoNome, setNovoNome] = useState('');
   const [avaliacao, setAvaliacao] = useState<number | undefined>();
-
-  // Estado para o nome do novo comentário
   const [respostaNomes, setRespostaNomes] = useState<{ [key: string]: string }>({});
 
-  // Adicionar um comentário
-  const addComment = (event: React.FormEvent) => {
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await fetch('api/comentarios/forum');
+        if (!response.ok) {
+          throw new Error('Erro.');
+        }
+        const data = await response.json();
+        setForumData(data);
+      } catch (error) {
+        console.error('Erro:', error);
+      }
+    };
+    fetchComments();
+  }, []);
+
+  const addComment = async (event: React.FormEvent) => {
     event.preventDefault();
-    const newComment: Comment = {
-      id: Math.random().toString(), // Substituir depois pelo ID vindo do back
+    const newComment: Omit<Comment, 'id'> = {
       autor: novoNome || 'Anônimo',
       avaliacao: avaliacao || 0,
       comentario: novoComentario,
@@ -50,29 +34,62 @@ const ForumMudas: React.FC = () => {
       respostas: [],
       podeResponder: true
     };
-    setForumData((prevData) => [...prevData, newComment]);
-    setNovoComentario('');
-    setNovoNome('');
-    setAvaliacao(undefined);
-  };
 
-  // Função para adicionar resposta a um comentário
-  const addReply = (commentId: string, reply: CommentResponse) => {
-    const updatedForumData = forumData.map(comment => {
-      if (comment.id === commentId) {
-        return {
-          ...comment,
-          respostas: [...comment.respostas, reply]
-        };
+    try {
+      const response = await fetch('/api/comentarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newComment),
+      });
+      if (!response.ok) {
+        throw new Error('Erro ao adicionar comentário');
       }
-      return comment;
-    });
-    setForumData(updatedForumData);
-    // Limpa o nome da resposta depois de enviar
-    setRespostaNomes({ ...respostaNomes, [commentId]: '' });
+      const data = await response.json();
+      setForumData((prevData) => [...prevData, data]);
+      setNovoComentario('');
+      setNovoNome('');
+      setAvaliacao(undefined);
+    } catch (error) {
+      console.error('Erro ao adicionar comentário:', error);
+    }
   };
 
-  // Estrelas
+  const addReply = async (commentId: string, reply: Omit<CommentResponse, 'id'>) => {
+    try {
+      const response = await fetch(`/api/respostas`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...reply,
+          comentarioPai: {
+            id: commentId
+          }
+        }),
+      });
+      if (!response.ok) {
+        throw new Error('Erro ao adicionar resposta');
+      }
+      const data = await response.json();
+      const updatedForumData = forumData.map(comment => {
+        if (comment.id === commentId) {
+          return {
+            ...comment,
+            respostas: [...comment.respostas, data]
+          };
+        }
+        return comment;
+      });
+      setForumData(updatedForumData);
+      setRespostaNomes({ ...respostaNomes, [commentId]: '' });
+    } catch (error) {
+      console.error('Erro ao adicionar resposta:', error);
+    }
+  };
+
   const renderStarRating = (avaliacao: number | undefined) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -80,7 +97,7 @@ const ForumMudas: React.FC = () => {
         <span
           key={i}
           onClick={() => setAvaliacao(i)}
-          className={i <=  (avaliacao || 0) ? "text-warning fas fa-star" : "text-warning far fa-star"}
+          className={i <= (avaliacao || 0) ? "text-warning fas fa-star" : "text-warning far fa-star"}
           style={{ cursor: "pointer" }}
         >
         </span>
@@ -92,14 +109,13 @@ const ForumMudas: React.FC = () => {
   return (
     <div>
       <h1 className="mb-4 text-primary text-center">Fórum de Avaliações e Comentários</h1>
-
       <div className="row">
         <div className="col-md-1"></div>
         <div className="col-md-10">
-          {/* Map das avaliações e comentários */}
           {forumData.map(comment => (
             <div key={comment.id} className="card mb-3">
               <div className="card-body">
+                <h5 className="card-title">{comment.autor || 'Anônimo'}</h5>
                 <h5 className="card-title">{comment.autor || 'Anônimo'}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{new Date(comment.data).toLocaleString()}</h6>
                 <div>
@@ -124,17 +140,20 @@ const ForumMudas: React.FC = () => {
                         type="text"
                         placeholder="Digite sua resposta e aperte o Enter..."
                         className="form-control"
-                        onKeyDown={e => {
+                        onKeyDown={async e => {
                           if (e.key === 'Enter') {
-                            // Depois adicionar a lógica pra enviar pro back a resposta
-                            const reply: CommentResponse = {
-                              id: Math.random().toString(), // Substituir pelo ID vindo do backend
+                            const reply: Omit<CommentResponse, 'id'> = {
                               autor: respostaNomes[comment.id] || 'Anônimo',
                               comentario: e.currentTarget.value,
                               data: new Date().toISOString(),
+                              comentarioPai: {
+                                id: comment.id
+                              }
                             };
-                            addReply(comment.id, reply);
-                            e.currentTarget.value = ''; // Limpa o campo de texto depois de enviar a resposta
+                            await addReply(comment.id, reply);
+                            if (e.currentTarget) {
+                              e.currentTarget.value = '';
+                            }
                           }
                         }}
                       />
