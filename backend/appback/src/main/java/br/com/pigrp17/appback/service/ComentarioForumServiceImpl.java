@@ -1,20 +1,26 @@
 package br.com.pigrp17.appback.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.pigrp17.appback.model.ComentarioForum;
 import br.com.pigrp17.appback.repository.ComentarioForumRepository;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class ComentarioForumServiceImpl implements ComentarioForumService {
-  
-  private final ComentarioForumRepository repository;
 
-  public ComentarioForum save(ComentarioForum comentario) {
+    @Autowired
+    private ComentarioForumRepository repository;
 
-    return repository.save(comentario);
-  }
+    @Override
+    public ComentarioForum save(ComentarioForum comentarioForum) {
+        return repository.save(comentarioForum);
+    }
 
+    @Override
+    public List<ComentarioForum> getAllComments() {
+        return repository.findAll();
+    }
 }

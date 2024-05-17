@@ -13,7 +13,6 @@ CREATE TABLE Usuarios (
     cidade VARCHAR(255),
     celular VARCHAR(11),
     uf VARCHAR(2)
-    -- Outros campos de dados pessoais
 );
 
 -- Tabela de Mudas
@@ -25,26 +24,6 @@ CREATE TABLE Mudas (
     imagem TEXT,
     proprietario_id INT,
     FOREIGN KEY (proprietario_id) REFERENCES Usuarios(user_id)
-);
-
--- Tabela de Fórum
-CREATE TABLE Forum (
-    PostID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    Conteudo TEXT,
-    DataHora DATETIME,
-    FOREIGN KEY (UserID) REFERENCES Usuarios(user_id)
-);
-
--- Tabela de Avaliações
-CREATE TABLE Avaliacoes (
-    AvaliacaoID INT AUTO_INCREMENT PRIMARY KEY,
-    AvaliadorID INT,
-    AvaliadoID INT,
-    Comentario TEXT,
-    Classificacao INT,
-    FOREIGN KEY (AvaliadorID) REFERENCES Usuarios(user_id),
-    FOREIGN KEY (AvaliadoID) REFERENCES Usuarios(user_id)
 );
 
 -- Tabela de Catálogo de Mudas
@@ -66,6 +45,26 @@ CREATE TABLE Trocas (
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(user_id),
     FOREIGN KEY (muda_id) REFERENCES Mudas(muda_id) ON DELETE CASCADE,
     FOREIGN KEY (catalogo_muda_id) REFERENCES Catalogo_Mudas(id) ON DELETE CASCADE
+);
+
+-- Tabela de Comentários (Fórum)
+CREATE TABLE Comentarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    autor VARCHAR(255),
+    avaliacao INT,
+    comentario TEXT,
+    data TIMESTAMP,
+    pode_responder BOOLEAN
+);
+
+-- Tabela de Respostas aos Comentários (Fórum)
+CREATE TABLE Respostas_Comentarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    autor VARCHAR(255),
+    comentario TEXT,
+    data TIMESTAMP,
+    comment_id INT,
+    FOREIGN KEY (comment_id) REFERENCES Comentarios(id)
 );
 
 INSERT INTO Catalogo_Mudas (nome, descricao, categoria, imagem) VALUES
