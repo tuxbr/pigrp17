@@ -1,5 +1,7 @@
 package br.com.pigrp17.appback.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,13 +19,16 @@ public class RespostaComentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String autor;
+    
     private String comentario;
+    
     private String data;
 
     @ManyToOne
     @JoinColumn(name = "comment_id")
+    @JsonBackReference
     private ComentarioForum comentarioPai;
 
     public Long getId() {

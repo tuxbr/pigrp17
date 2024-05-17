@@ -28,4 +28,9 @@ public class ComentarioForumController {
         return ResponseEntity.ok(newComment);
     }
 
+    @GetMapping("/forum")
+    public ResponseEntity<List<ComentarioForum>> getAllCommentsWithResponses() {
+        List<ComentarioForum> commentsWithResponses = comentarioService.getAllCommentsWithResponses();
+        return ResponseEntity.ok(commentsWithResponses);
+    }
 }

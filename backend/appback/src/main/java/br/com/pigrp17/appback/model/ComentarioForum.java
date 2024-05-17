@@ -2,6 +2,8 @@ package br.com.pigrp17.appback.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,9 +36,10 @@ public class ComentarioForum {
     @Column(name = "data", nullable = false)
     private String data;
 
-    @OneToMany(mappedBy = "comentarioPai", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "comentarioPai", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<RespostaComentario> respostas;
-    
+
     @Column(name = "pode_responder", nullable = false)
     private boolean podeResponder;
 

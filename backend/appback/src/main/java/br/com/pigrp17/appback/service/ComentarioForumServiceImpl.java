@@ -23,4 +23,9 @@ public class ComentarioForumServiceImpl implements ComentarioForumService {
     public List<ComentarioForum> getAllComments() {
         return repository.findAll();
     }
+
+    @Override
+    public List<ComentarioForum> getAllCommentsWithResponses() {
+        return repository.findAllWithRespostas();
+    }
 }
