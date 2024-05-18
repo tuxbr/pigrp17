@@ -116,7 +116,6 @@ const ForumMudas: React.FC = () => {
             <div key={comment.id} className="card mb-3">
               <div className="card-body">
                 <h5 className="card-title">{comment.autor || 'Anônimo'}</h5>
-                <h5 className="card-title">{comment.autor || 'Anônimo'}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{new Date(comment.data).toLocaleString()}</h6>
                 <div>
                   {/* Estrelas */}
@@ -204,7 +203,7 @@ const ForumMudas: React.FC = () => {
                 onChange={e => setNovoComentario(e.target.value)}
               />
             </div>
-            <button type="submit" className="btn btn-primary">Adicionar Comentário</button>
+            <button type="submit" className="btn btn-primary text-white">Adicionar Comentário</button>
           </form>
         </div>
         <div className="col-md-1"></div>
