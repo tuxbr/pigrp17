@@ -12,7 +12,7 @@
 [PDF da Segunda Entrega](adicionar o link do que ainda vai ser entregue na segunda entrega)
 
 ## Vídeo de Demonstração
-[Assista ao Vídeo no YouTube](link da url do vídeo que vamos fazer)
+[Assista ao Vídeo no YouTube](https://www.youtube.com/watch?v=HL1YoPHdF1M)
 
 ## Descrição
 O frontend foi desenvolvido utilizando HTML, CSS, React (com Next.js) e Bootstrap, localizado na pasta `frontend/terratrocada` deste repositório. 
