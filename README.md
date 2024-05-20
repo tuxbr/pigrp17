@@ -8,9 +8,6 @@
 - Raimundo Marcio Nunes Costa - tuxbr/ tuxgrupomx
 - Renato Ramalho Lima
 
-## Projeto Revisado
-[PDF da Segunda Entrega](adicionar o link do que ainda vai ser entregue na segunda entrega)
-
 ## Vídeo de Demonstração
 [Assista ao Vídeo no YouTube](https://www.youtube.com/watch?v=HL1YoPHdF1M)
 
